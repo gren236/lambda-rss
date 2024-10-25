@@ -1,0 +1,3 @@
+boto3
+feedparser
+python-telegram-bot
