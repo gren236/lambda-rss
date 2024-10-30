@@ -14,13 +14,13 @@ class TelegramBot:
 <a href="{link}">{link}</a>
     """
 
-    bot: Bot
+    token: str
 
     def __init__(self, token: str):
-        self.bot = Bot(token=token)
+        self.token = token
 
     async def send_message(self, chat_id: str, message: str):
-        await self.bot.send_message(chat_id=chat_id, text=message, parse_mode=ParseMode.HTML)
+        await Bot(token=self.token).send_message(chat_id=chat_id, text=message, parse_mode=ParseMode.HTML)
 
     def format_message(self, title: str, author: str, content: str, link: str):
         content = html.escape(content)
