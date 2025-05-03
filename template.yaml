@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   lambda-rss
 
-  SAM Template for lambda-rss
+  Sample SAM Template for lambda-rss
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -15,9 +15,9 @@ Resources:
   RSSFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: rss/
-      Handler: app.lambda_handler
-      Runtime: python3.12
+      PackageType: Image
+      Architectures:
+        - arm64
       Environment:
         Variables:
           DYNAMODB_TABLE: ""
@@ -26,8 +26,6 @@ Resources:
       Policies:
         - AWSLambdaExecute
         - AmazonDynamoDBFullAccess
-      Architectures:
-        - x86_64
       Events:
         RSS:
           Type: Schedule
@@ -36,11 +34,12 @@ Resources:
             Name: schedule
             Description: Run every hour
             Enabled: True
+    Metadata:
+      DockerTag: provided.al2023-v1
+      DockerContext: ./app
+      Dockerfile: Dockerfile
 
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   RSSFunction:
     Description: "RSS Lambda Function ARN"
     Value: !GetAtt RSSFunction.Arn
