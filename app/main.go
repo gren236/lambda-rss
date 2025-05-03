@@ -6,8 +6,8 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/mmcdole/gofeed"
 	"github.com/sethvargo/go-envconfig"
-	"hello-world/internal/feeds"
-	"hello-world/internal/tg"
+	"lambda-rss/internal/feeds"
+	"lambda-rss/internal/tg"
 	"log"
 	"slices"
 	"sync"
@@ -29,6 +29,10 @@ func init() {
 
 	if err := envconfig.Process(ctx, &conf); err != nil {
 		log.Fatal(err)
+	}
+
+	if conf.TelegramToken == "" || conf.TelegramChatID == 0 || conf.Table == "" {
+		log.Fatal("missing required environment variables")
 	}
 
 	dbFeeds = feeds.New(ctx, conf.Table)

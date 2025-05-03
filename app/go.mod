@@ -1,13 +1,13 @@
-module hello-world
+module lambda-rss
 
 go 1.24
 
 require (
 	github.com/aws/aws-lambda-go v1.48.0
-	github.com/aws/aws-sdk-go v1.55.6
 	github.com/aws/aws-sdk-go-v2/config v1.29.14
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.18.12
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.4
+	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/mmcdole/gofeed v1.3.0
 	github.com/sethvargo/go-envconfig v1.2.0
 	github.com/stretchr/testify v1.10.0
@@ -31,8 +31,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.19 // indirect
 	github.com/aws/smithy-go v1.22.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible // indirect
-	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mmcdole/goxpp v1.1.1-0.20240225020742-a0c311522b23 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
